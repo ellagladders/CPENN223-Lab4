@@ -41,6 +41,23 @@ public static class GenomeAnalyzer
 {
     public static Dictionary<string, int> CountKMers(string sequence, int k)
     {
+        if (sequence == null)
+        {
+            throw new ArgumentNullException();
+        }
+
+        if (k <= 0 || k > sequence.Length)
+        {
+            throw new ArgumentException();
+        }
+
+        foreach (char nucleotide in sequence)
+        {
+            if (nucleotide != 'A' && nucleotide != 'C' && nucleotide != 'G' && nucleotide != 'T')
+            {
+                throw new ArgumentException();
+            }
+        }
         // store each kmer as a key and its occureence as a value in a dictionary
         Dictionary<string, int> CountKMers = new Dictionary<string, int>();
 
